@@ -9,13 +9,11 @@ function App() {
   const[editing, setEditing] = useState(false)
   const [editingIndex, setEditingIndex] = useState(null);
 
-  
 // 
   const handleChange = (event) => {
     setCurrentThought(event.target.value);
   }
 //  
-
   const handleSubmit = (event) =>{
     event.preventDefault();
 
@@ -24,18 +22,16 @@ function App() {
     setCurrentThought('')}
   }
 //
-
   const handleDelete = (indexToDelete) =>{
     setThoughts(prev => prev.filter((_, index) => index !== indexToDelete))
   }
 //
-
   const handleEdit = (indexToEdit) =>{
     setEditing(true)
     setEditingIndex(indexToEdit)
     setCurrentThought(thoughts[indexToEdit])
   }
-
+  //
   const saveEdit =(indexToReplace)=>{
     setThoughts(prev =>
       prev.map((thought, index) =>
@@ -58,8 +54,7 @@ function App() {
         <button className="button-main" type="submit" >Post!</button>
         {editing ? (
           <button className="button-main" onClick={()=>saveEdit(editingIndex)}>Save</button>
-        ): null}
-       
+        ): null}   
       </form>
 
       <div className="thought-column">
@@ -67,8 +62,6 @@ function App() {
         <Card key={index} thoughts={thought} num={index + 1} handleDelete={()=>handleDelete(index)} handleEdit={() => handleEdit(index)}/>
       ))}
       </div>
-  
-      
     </div>
   );
 }
